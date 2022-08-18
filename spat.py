@@ -18,7 +18,7 @@ def sp_logits(logits, s, m, y, num_classes=10):
     mask = F.one_hot(y, num_classes=num_classes)
     alpha_p = (1 + m - logits) * mask
     alpha_n = (logits + m) * (1 - mask)
-    logits = s * (alpha_p * (logits + m - 1) + alpha_n * (logits + m))
+    logits = s * (alpha_p * logits + alpha_n * logits)
     return logits
 
 
