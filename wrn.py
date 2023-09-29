@@ -90,7 +90,7 @@ class WideResNet(nn.Module):
         out = F.avg_pool2d(out, 8)
         features = out.view(-1, self.nChannels)
         if normalize:
-            features = F.normalize(out, p=2, dim=1)
+            features = F.normalize(features, p=2, dim=1)
             for _, module in self.fc.named_modules():
                 if isinstance(module, nn.Linear):
                     module.weight.data = F.normalize(module.weight, p=2, dim=1)
